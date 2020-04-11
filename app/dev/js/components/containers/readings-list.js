@@ -7,7 +7,7 @@ class ReadingsList extends Component {
     createListItems() {
         return this.props.readings.map((reading) => {
             return (
-            <li keyParams={reading.id}>{reading.temperature} {reading.humidity}</li>
+            <li keyParams={reading.id}>Temperature: {reading.temperature} Humidity: {reading.humidity}</li>
             );
         });
     }
