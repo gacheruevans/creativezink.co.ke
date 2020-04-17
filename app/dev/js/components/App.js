@@ -7,5 +7,4 @@ const App = () => (
         <Drawer />
     </>
 );
-
 export default App;

@@ -4,5 +4,4 @@ import ReadingsReducer from './reducer-readings';
 const allReducers = combineReducers({
     readings: ReadingsReducer,
 });
-
 export default allReducers;

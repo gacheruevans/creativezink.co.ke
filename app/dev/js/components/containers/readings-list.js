@@ -76,5 +76,4 @@ function mapStateToProps(state) {
 function matchDispatchToProps (dispatch) {
     return bindActionCreators({getData: getData}, dispatch)
 }
-
 export default connect(mapStateToProps, matchDispatchToProps)(ReadingsList);
