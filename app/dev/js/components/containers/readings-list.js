@@ -9,17 +9,21 @@ import {
     TableCell, 
     TableContainer, 
     TableHead, 
-    TableRow ,
+    TableRow,
+    TablePagination,
     Paper } from '@material-ui/core';
 
 const useStyles = makeStyles({
+    root: {
+        width: '100%',
+    },
     table: {
-        minWidth: 650,
+        maxHeight: 440,
     },
 });
 
 class ReadingsList extends Component {
-
+    
     createListItems() {
         return (
             this.props.readings.map((reading) => {
@@ -40,21 +44,25 @@ class ReadingsList extends Component {
         );
     }
     render() {
+        const records = this.props.readings;
+        
         return (
-            <TableContainer component={Paper}>
-                <Table className={useStyles.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                        <TableCell >No'</TableCell>
-                            <TableCell>Temperature</TableCell>
-                            <TableCell>Humidity</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.createListItems()}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Paper className={useStyles.root}>
+                <TableContainer component={Paper}>
+                    <Table className={useStyles.table} stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                            <TableCell >No'</TableCell>
+                                <TableCell>Temperature</TableCell>
+                                <TableCell>Humidity</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.createListItems()}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Paper>
         );
     }
 }

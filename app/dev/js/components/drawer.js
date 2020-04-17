@@ -54,12 +54,15 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    backgroundColor: '#3f51b5',
+    color: '#fff',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
+    backgroundColor: '#192046',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -68,6 +71,11 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9) + 1,
+    },
+  },
+  selected: {
+    hover: {
+      backgroundColor: '#00000057',
     },
   },
   toolbar: {
@@ -94,6 +102,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  iconcolor: {
+      color: 'white',
+  }
 }));
 
 export default function MiniDrawer() {
@@ -104,6 +115,11 @@ export default function MiniDrawer() {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -267,18 +283,14 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {['Overview', 'Users', 'Graphs', 'Green Houses'].map((text, index) => (
+            <ListItem 
+                button 
+                key={text}
+                selected={selectedIndex === index}
+                onClick={(event) => handleListItemClick(event, index)}
+            >
+              <ListItemIcon className={classes.iconcolor}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
