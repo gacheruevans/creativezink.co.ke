@@ -3,11 +3,12 @@ import ReadingsList from './containers/readings-list';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
-    Drawer, AppBar, Toolbar, Badge,
-    List, ListItem, ListItemIcon,ListItemText,
+    Avatar,Drawer, AppBar, Toolbar, Badge,
+    List, ListItem, ListItemIcon,ListItemText, ListItemAvatar,
     Menu, MenuItem, CssBaseline, Typography,
     Divider, IconButton
 } from '@material-ui/core';
+import {deepOrange} from '@material-ui/core/colors';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   appBarShift: {
+    backgroundColor: '#192046',
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -104,6 +106,13 @@ const useStyles = makeStyles((theme) => ({
   },
   iconcolor: {
       color: 'white',
+  },
+  companyLogo: {
+      color: 'white',
+  },
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
   }
 }));
 
@@ -277,13 +286,23 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
+          <div className={classes.companyLogo}>
+            <List className={classes.root}>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar className={classes.orange}>CI</Avatar>
+                </ListItemAvatar>
+                <ListItemText primary="Creativez Ink"/>
+              </ListItem>
+            </List>
+          </div>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon className={classes.iconcolor}/> : <ChevronLeftIcon className={classes.iconcolor}/>}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Overview', 'Users', 'Graphs', 'Green Houses'].map((text, index) => (
+          {['Dashboard', 'Users', 'Graphs', 'Green Houses'].map((text, index) => (
             <ListItem 
                 button 
                 key={text}
