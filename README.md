@@ -1,2 +1,1 @@
-# creativezink.co.ke
-Creativez Ink Website
+### Morphing Simple React App to a React Redux Application
